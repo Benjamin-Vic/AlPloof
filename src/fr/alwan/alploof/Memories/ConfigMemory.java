@@ -11,6 +11,8 @@ public class ConfigMemory {
         final AlPloof alPloof = AlPloof.getInstance();
         final YamlConfiguration configFile = alPloof.getYml(alPloof.getFile("config"));
 
+        alPloof.limit = configFile.getInt("limit");
+
         alPloof.divingboard = new Location(
                 Bukkit.getWorld(configFile.getString("divingboard.world")),
                 configFile.getDouble("divingboard.x"),

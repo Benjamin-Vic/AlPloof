@@ -1,24 +1,34 @@
 package fr.alwan.alploof;
 
+import fr.alwan.alploof.Commands.PloofCommand;
 import fr.alwan.alploof.Files.ConfigFile;
-import fr.alwan.alploof.Listeners.PlayerJoin;
-import fr.alwan.alploof.Listeners.PlayerQuit;
+import fr.alwan.alploof.Listeners.*;
 import fr.alwan.alploof.Memories.ConfigMemory;
 import org.bukkit.Bukkit;
+import org.bukkit.DyeColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.Wool;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AlPloof extends JavaPlugin {
 
+    public String prefix;
+
     public ArrayList<Player> playersInGame = new ArrayList<>();
+    public HashMap<Player, Material> playersMaterial = new HashMap<>();
+
+    public int limit;
     public Location divingboard;
     public Location spectator;
 
@@ -33,6 +43,7 @@ public class AlPloof extends JavaPlugin {
         instance = this;
         start_data();
         registerListeners();
+        registerCommands();
     }
 
     @Override
@@ -41,20 +52,11 @@ public class AlPloof extends JavaPlugin {
     }
 
     //
-    // Events
-    //
-
-    private void registerListeners() {
-        PluginManager pm = Bukkit.getPluginManager();
-        pm.registerEvents(new PlayerJoin(), this);
-        pm.registerEvents(new PlayerQuit(), this);
-    }
-
-    //
     // Data
     //
 
     private void start_data() {
+        this.prefix = "§7[ §3AlPloof §7]";
         createFolder();
         ConfigFile.create_configFile();
         ConfigMemory.init_configMemory();
@@ -62,7 +64,30 @@ public class AlPloof extends JavaPlugin {
     }
 
     private void stop_data() {
+        playersInGame.clear();
+    }
 
+    //
+    // Events
+    //
+
+    private void registerListeners() {
+        PluginManager pm = Bukkit.getPluginManager();
+        pm.registerEvents(new PlayerInteract(), this);
+        pm.registerEvents(new PlayerJoin(), this);
+        pm.registerEvents(new PlayerQuit(), this);
+        pm.registerEvents(new PlayerDropItem(), this);
+        pm.registerEvents(new PlayerPickupItem(), this);
+        pm.registerEvents(new BlockBreak(), this);
+        pm.registerEvents(new BlockPlace(), this);
+    }
+
+    //
+    // Commands
+    //
+
+    private void registerCommands() {
+        this.getCommand("ploof").setExecutor(new PloofCommand());
     }
 
     //

@@ -2,3 +2,7 @@ name: AlPloof
 version: 0.1
 author: Alwan
 main: fr.alwan.alploof.AlPloof
+api-version: 1.16
+commands:
+  ploof:
+    description: Usage /ploof help

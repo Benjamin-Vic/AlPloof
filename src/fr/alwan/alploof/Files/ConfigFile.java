@@ -16,6 +16,7 @@ public class ConfigFile {
             try {
                 file.createNewFile();
                 final YamlConfiguration configFile = alPloof.getYml(file);
+                configFile.set("limit", 8);
                 configFile.set("divingboard.world", "world");
                 configFile.set("divingboard.x", 0);
                 configFile.set("divingboard.y", 120);
