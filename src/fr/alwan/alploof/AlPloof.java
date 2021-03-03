@@ -3,7 +3,9 @@ package fr.alwan.alploof;
 import fr.alwan.alploof.Files.ConfigFile;
 import fr.alwan.alploof.Listeners.PlayerJoin;
 import fr.alwan.alploof.Listeners.PlayerQuit;
+import fr.alwan.alploof.Memories.ConfigMemory;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -17,6 +19,8 @@ import java.util.ArrayList;
 public class AlPloof extends JavaPlugin {
 
     public ArrayList<Player> playersInGame = new ArrayList<>();
+    public Location divingboard;
+    public Location spectator;
 
     public static AlPloof instance;
 
@@ -47,12 +51,14 @@ public class AlPloof extends JavaPlugin {
     }
 
     //
-    // Datas
+    // Data
     //
 
     private void start_data() {
         createFolder();
         ConfigFile.create_configFile();
+        ConfigMemory.init_configMemory();
+        Clock.start_playerClock();
     }
 
     private void stop_data() {
@@ -64,13 +70,13 @@ public class AlPloof extends JavaPlugin {
     //
 
     public static void createFolder() {
-        final File mainDirectory = new File("plugins/alploof");
+        final File mainDirectory = new File("plugins/AlPloof");
         if (!mainDirectory.exists())
             mainDirectory.mkdir();
     }
 
     public static File getFile(String fileName) {
-        final File dataDirectory = new File("plugins/alploof");
+        final File dataDirectory = new File("plugins/AlPloof");
         return (new File(dataDirectory, fileName + ".yml"));
     }
 

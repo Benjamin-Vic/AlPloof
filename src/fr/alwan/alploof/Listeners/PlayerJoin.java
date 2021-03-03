@@ -14,7 +14,5 @@ public class PlayerJoin implements Listener {
         final AlPloof alPloof = AlPloof.getInstance();
 
         alPloof.playersInGame.add(player);
-
-
     }
 }

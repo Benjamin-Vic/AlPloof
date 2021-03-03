@@ -16,9 +16,14 @@ public class ConfigFile {
             try {
                 file.createNewFile();
                 final YamlConfiguration configFile = alPloof.getYml(file);
-                configFile.set("plongeoir.x", "0");
-                configFile.set("plongeoir.y", "120");
-                configFile.set("plongeoir.z", "0");
+                configFile.set("divingboard.world", "world");
+                configFile.set("divingboard.x", 0);
+                configFile.set("divingboard.y", 120);
+                configFile.set("divingboard.z", 0);
+                configFile.set("spectator.world", "world");
+                configFile.set("spectator.x", 0);
+                configFile.set("spectator.y", 120);
+                configFile.set("spectator.z", 0);
                 alPloof.saveYml(file, configFile);
             } catch (IOException e) {
                 e.printStackTrace();
