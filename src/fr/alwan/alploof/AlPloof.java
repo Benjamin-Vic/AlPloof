@@ -2,6 +2,8 @@ package fr.alwan.alploof;
 
 import fr.alwan.alploof.Commands.PloofCommand;
 import fr.alwan.alploof.Files.ConfigFile;
+import fr.alwan.alploof.Game.Game;
+import fr.alwan.alploof.Handlers.PlayerHandler;
 import fr.alwan.alploof.Listeners.*;
 import fr.alwan.alploof.Memories.ConfigMemory;
 import org.bukkit.Bukkit;
@@ -25,12 +27,16 @@ public class AlPloof extends JavaPlugin {
 
     public String prefix;
 
-    public ArrayList<Player> playersInGame = new ArrayList<>();
-    public HashMap<Player, Material> playersMaterial = new HashMap<>();
+    public Game game;
 
-    public int limit;
+    public ArrayList<Player> playersInGame = new ArrayList<>();
+
+    public boolean isEditable;
+    public int playerlimit;
     public Location divingboard;
     public Location spectator;
+    public Location swimmingpoolx1;
+    public Location swimmingpoolx2;
 
     public static AlPloof instance;
 
@@ -55,16 +61,25 @@ public class AlPloof extends JavaPlugin {
     // Data
     //
 
-    private void start_data() {
-        this.prefix = "§7[ §3AlPloof §7]";
+    public void start_data() {
+        this.game = new Game();
+        this.prefix = "§7[§3AlPloof§7] ";
+        this.isEditable = false;
         createFolder();
         ConfigFile.create_configFile();
         ConfigMemory.init_configMemory();
         Clock.start_playerClock();
+        for (Player player : Bukkit.getOnlinePlayers())
+            PlayerHandler.joinPlayer(player);
     }
 
-    private void stop_data() {
+    public void stop_data() {
         playersInGame.clear();
+    }
+
+    public void reload_data() {
+        stop_data();
+        start_data();
     }
 
     //

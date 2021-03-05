@@ -1,6 +1,7 @@
 package fr.alwan.alploof.Listeners;
 
 import fr.alwan.alploof.AlPloof;
+import fr.alwan.alploof.Handlers.PlayerHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,6 +15,7 @@ public class PlayerQuit implements Listener {
         final Player player = event.getPlayer();
         final AlPloof alPloof = AlPloof.getInstance();
 
-        alPloof.playersInGame.remove(player);
+        if (alPloof.playersInGame.contains(player))
+            PlayerHandler.removePlayer(player);
     }
 }

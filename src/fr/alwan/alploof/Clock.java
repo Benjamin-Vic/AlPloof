@@ -18,7 +18,7 @@ public class Clock {
         Score score3 = objective.getScore(" ");
         score3.setScore(3);
 
-        Score score2 = objective.getScore(ChatColor.AQUA + "Players in game : " + ChatColor.GOLD + alPloof.playersInGame.size());
+        Score score2 = objective.getScore(ChatColor.AQUA + "Players in game : " + ChatColor.GOLD + alPloof.playersInGame.size() + "/" + alPloof.playerlimit);
         score2.setScore(2);
 
         Score score1 = objective.getScore("  ");
@@ -28,7 +28,7 @@ public class Clock {
         if (alPloof.playersInGame.contains(player))
             score0 = objective.getScore(ChatColor.GREEN + "You are in the game !");
         else
-            score0 = objective.getScore(ChatColor.RED + "You aren't in the game");
+            score0 = objective.getScore(ChatColor.RED + "You are not in the game");
         score0.setScore(0);
 
         player.setScoreboard(board);
@@ -41,6 +41,6 @@ public class Clock {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 update_scoreboard(player);
             }
-        },0, 20);
+        },0, 20L);
     }
 }
