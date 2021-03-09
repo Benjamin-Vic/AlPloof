@@ -21,6 +21,9 @@ public class ConfigFile {
                 // Payer limit
                 configFile.set("playerlimit", 8);
 
+                // Border
+                configFile.set("border", Material.STONE.toString());
+
                 // Diving board
                 configFile.set("divingboard.world", "world");
                 configFile.set("divingboard.x", 0);
@@ -32,9 +35,6 @@ public class ConfigFile {
                 configFile.set("spectator.x", 0);
                 configFile.set("spectator.y", 120);
                 configFile.set("spectator.z", 0);
-
-                // Border
-                configFile.set("border", Material.STONE.toString());
 
                 // Swimming Pool
                 configFile.set("swimmingpool.x1.world", "world");

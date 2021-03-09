@@ -41,6 +41,6 @@ public class Clock {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 update_scoreboard(player);
             }
-        },0, 20L);
+        },0, 10L);
     }
 }

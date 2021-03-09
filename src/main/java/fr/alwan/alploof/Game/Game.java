@@ -38,7 +38,7 @@ public class Game {
 
     public void startGame() {
         PlayerHandler.teleportPlayerLivingboard(alPloof.playersInGame.get(i));
-        gameRunnable.runTaskTimer(alPloof, 0, 10L);
+        gameRunnable.runTaskTimer(alPloof, 0, 2L);
     }
 
     public StartRunnable getStartRunnable() {

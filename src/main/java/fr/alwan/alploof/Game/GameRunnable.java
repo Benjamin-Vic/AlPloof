@@ -22,6 +22,8 @@ public class GameRunnable extends BukkitRunnable {
             Bukkit.broadcastMessage("§eGG à §b" + alPloof.playersInGame.get(0).getName() + "§e qui vient de remporter cette partie !");
             cancel();
             alPloof.reload_data();
+            for (Player player : Bukkit.getOnlinePlayers())
+                player.teleport(alPloof.spectator);
             return;
         }
         if (game.getI() > alPloof.playersInGame.size() - 1)

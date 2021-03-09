@@ -42,6 +42,9 @@ public class PlayerHandler {
         final Inventory inventory = player.getInventory();
 
         player.setGameMode(GameMode.ADVENTURE);
+        player.setInvulnerable(true);
+        player.setHealth(20);
+        player.setFoodLevel(20);
         inventory.clear();
         inventory.setItem(0, ItemBuilder.create_item(Material.GREEN_WOOL, ChatColor.GREEN + "Join the game"));
         inventory.setItem(1, ItemBuilder.create_item(Material.RED_WOOL, ChatColor.RED + "Join spectator"));

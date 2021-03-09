@@ -15,15 +15,15 @@ public class ConfigMemory {
 
         alPloof.divingboard = new Location(
                 Bukkit.getWorld(configFile.getString("divingboard.world")),
-                configFile.getDouble("divingboard.x"),
-                configFile.getDouble("divingboard.y"),
-                configFile.getDouble("divingboard.z"));
+                configFile.getDouble("divingboard.x") + 0.5,
+                configFile.getDouble("divingboard.y") + 0.5,
+                configFile.getDouble("divingboard.z") + 0.5);
 
         alPloof.spectator = new Location(
                 Bukkit.getWorld(configFile.getString("spectator.world")),
-                configFile.getDouble("spectator.x"),
-                configFile.getDouble("spectator.y"),
-                configFile.getDouble("spectator.z"));
+                configFile.getDouble("spectator.x") + 0.5,
+                configFile.getDouble("spectator.y") + 0.5,
+                configFile.getDouble("spectator.z") + 0.5);
 
         alPloof.swimmingpoolx1 = new Location(
                 Bukkit.getWorld(configFile.getString("swimmingpool.x1.world")),
